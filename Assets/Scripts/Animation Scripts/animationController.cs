@@ -15,6 +15,14 @@ public class animationController : MonoBehaviour {
 
         var hori = Input.GetAxis("Horizontal");
 
+        run();
+        jump();
+
+        
+    }
+
+    void run()
+    {
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Debug.Log("right pressed");
@@ -25,6 +33,19 @@ public class animationController : MonoBehaviour {
         {
             Debug.Log("right pressed");
             anim.SetBool("running", false);
+        }
+    }
+
+    void jump()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !anim.GetBool("running"))
+        {
+            anim.SetTrigger("jump");
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && anim.GetBool("running"))
+        {
+            anim.SetTrigger("runJump");
         }
     }
 }
